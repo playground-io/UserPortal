@@ -1,25 +1,25 @@
 <script setup>
-import SplitterHandle from '@/components/extensions/SplitterHandle.vue';
-import SvgToIcon from '@/components/core/SvgToIcon.vue';
-import { useDrawerStore } from '@/stores/useDrawerStore';
+import SplitterHandle from '@/components/extensions/SplitterHandle.vue'
+import SvgToIcon from '@/components/core/SvgToIcon.vue'
+import { useDrawerStore } from '@/stores/useDrawerStore'
 
-const drawerStore = useDrawerStore();
+const drawerStore = useDrawerStore()
 </script>
 
 <template>
   <div class="separator-container">
     <div class="separator-left">
-      <h3>{{drawerStore.getTitle()}}</h3>
+      <h3>{{ drawerStore.getTitle() }}</h3>
     </div>
     <div class="separator-center">
-      <SvgToIcon name="separator" :size=12 />
+      <SvgToIcon name="separator" :size="18" />
     </div>
-    <div class="separator-right"></div> 
-    <SplitterHandle />   
+    <div class="separator-right"></div>
+    <SplitterHandle />
   </div>
 </template>
 
-<style lang=scss scoped>
+<style lang="scss" scoped>
 .separator-container {
   display: flex;
   justify-content: space-between;
@@ -29,11 +29,13 @@ const drawerStore = useDrawerStore();
   border-top: 1px rgba(237, 237, 237) solid;
   transition: background-color var(--transition-fast) ease;
   color: #1c1c1c;
-  
-  &:hover, &:active {
+
+  &:hover,
+  &:active {
     background-color: rgba(237, 237, 237); //var(--splitter-bg-hover);
   }
-  &:hover > .separator-center, &:active > .separator-center {
+  &:hover > .separator-center,
+  &:active > .separator-center {
     color: rgb(92, 92, 92); //var(--splitter-bg-hover);
   }
 
@@ -51,7 +53,8 @@ const drawerStore = useDrawerStore();
     margin: 5px;
   }
 
-  & > .separator-left, & > .separator-rigth {
+  & > .separator-left,
+  & > .separator-rigth {
     display: flex;
     align-items: center;
     z-index: 20;

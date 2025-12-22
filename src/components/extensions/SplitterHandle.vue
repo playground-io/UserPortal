@@ -1,47 +1,46 @@
 <script setup>
-  import { ref, onUnmounted } from 'vue';
-  import { useSplitterStore } from '@/stores/useSplitterStore';
+import { ref, onUnmounted } from 'vue'
+import { useSplitterStore } from '@/stores/useSplitterStore'
 
-  const splitterStore = useSplitterStore();
+const splitterStore = useSplitterStore()
 
-  // --- Snap Configuration ---
-  const SNAP_OFFSET = 50; // Pixels distance to snap
-  const SNAP_POINTS = [
-    0, 100, 300
-    //window.innerHeight * 0.5, 
-    //window.innerHeight * 0.9
-  ];
-  // -------------------------
-  
+// --- Snap Configuration ---
+const SNAP_OFFSET = 50 // Pixels distance to snap
+const SNAP_POINTS = [
+  0, 100, 300,
+  //window.innerHeight * 0.5,
+  //window.innerHeight * 0.9
+]
+// -------------------------
 
-const appElement = document.getElementById('app');
+const appElement = document.getElementById('app')
 if (appElement) {
-    // Add the class to the root element's class list
-    console.log("Class 'my-new-class' added to #app.");
+  // Add the class to the root element's class list
+  console.log("Class 'my-new-class' added to #app.")
 } else {
-    console.error("Element with ID 'app' not found in the DOM.");
+  console.error("Element with ID 'app' not found in the DOM.")
 }
 
 // Internal State
-const isDragging = ref(false);
-const startY = ref(0);
-const startHeight = ref(0);
+const isDragging = ref(false)
+const startY = ref(0)
+const startHeight = ref(0)
 
 const startDrag = (e) => {
-  isDragging.value = true;
-  startY.value = e.clientY;
-  startHeight.value = splitterStore.bottomHeight;
-console.log(startY.value, isDragging.value, startHeight.value);
+  isDragging.value = true
+  startY.value = e.clientY
+  startHeight.value = splitterStore.bottomHeight
+  console.log(startY.value, isDragging.value, startHeight.value)
   // Add styling to body to prevent text selection
-  appElement.classList.add('resizing');
+  appElement.classList.add('resizing')
 
-//  document.body.classList.add('resizing');
+  //  document.body.classList.add('resizing');
 
   // Attach global listeners
-  document.addEventListener('mousemove', onDrag);
-  document.addEventListener('mouseup', stopDrag);
+  document.addEventListener('mousemove', onDrag)
+  document.addEventListener('mouseup', stopDrag)
   //emit('dragStart');
-};
+}
 
 /*  const onDrag = (e) => {
     if (!isDragging.value) return;
@@ -62,60 +61,55 @@ console.log(startY.value, isDragging.value, startHeight.value);
   };*/
 
 const onDrag = (e) => {
-  if (!isDragging.value) return;
-  const deltaY = startY.value - e.clientY;
-  let newHeight = startHeight.value + deltaY; // Changed to 'let'
+  if (!isDragging.value) return
+  const deltaY = startY.value - e.clientY
+  let newHeight = startHeight.value + deltaY // Changed to 'let'
   // 1. Apply Snap Logic
   for (const snapPoint of SNAP_POINTS) {
     if (Math.abs(newHeight - snapPoint) <= SNAP_OFFSET) {
-      newHeight = snapPoint; // Snap to the exact point
-      break; 
+      newHeight = snapPoint // Snap to the exact point
+      break
     }
   }
   // 2. Apply Hard Constraints
-  const minHeight = 0;
-  const maxHeight = 600; //window.innerHeight * 0.8;
-  
+  const minHeight = 0
+  const maxHeight = 600 //window.innerHeight * 0.8;
+
   // Ensure newHeight respects hard min/max constraints
-  const finalHeight = Math.max(minHeight, Math.min(maxHeight, newHeight));
+  const finalHeight = Math.max(minHeight, Math.min(maxHeight, newHeight))
   // 3. Update Model
   //if (props.modelValue !== finalHeight) {
   if (splitterStore.getBottomHeight !== finalHeight) {
     //emit('update:modelValue', finalHeight);
-    splitterStore.setBottomHeight(finalHeight);
+    splitterStore.setBottomHeight(finalHeight)
   }
-  console.log('log',splitterStore.bottomHeight);
-};
+  console.log('log', splitterStore.bottomHeight)
+}
 
 const stopDrag = () => {
   if (isDragging.value) {
-    isDragging.value = false;
+    isDragging.value = false
     //document.body.classList.remove('resizing');
-    appElement.classList.remove('resizing');
+    appElement.classList.remove('resizing')
     //emit('dragEnd');
   }
 
   // Clean up listeners
-  document.removeEventListener('mousemove', onDrag);
-  document.removeEventListener('mouseup', stopDrag);
-};
+  document.removeEventListener('mousemove', onDrag)
+  document.removeEventListener('mouseup', stopDrag)
+}
 
-onUnmounted(
-  () => {
-    document.removeEventListener('mousemove', onDrag);
-    document.removeEventListener('mouseup', stopDrag);
-  }
-);
+onUnmounted(() => {
+  document.removeEventListener('mousemove', onDrag)
+  document.removeEventListener('mouseup', stopDrag)
+})
 </script>
 
 <template>
-  <div
-    class="splitter"
-    @mousedown="startDrag"
-    ></div>
+  <div class="splitter" @mousedown="startDrag"></div>
 </template>
 
-<style lang=scss scoped>
+<style lang="scss" scoped>
 .splitter {
   position: absolute;
   width: 100%;
@@ -123,4 +117,4 @@ onUnmounted(
   //background-color: aqua;
   z-index: 30;
 }
-  </style>
+</style>

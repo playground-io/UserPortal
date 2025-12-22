@@ -1,11 +1,11 @@
 <script setup>
-import SvgToIcon from '@/components/core/SvgToIcon.vue';
+import SvgToIcon from '@/components/core/SvgToIcon.vue'
 </script>
 
 <template>
   <div class="bottom-bar">
     <div class="bottom-bar-left">
-      <SvgToIcon name="waiting_anime1" :size=16 class="icon" />
+      <SvgToIcon name="waiting_anime1" :size="16" class="icon" />
       {{ $t('footer.tasks') }}
     </div>
     <div class="bottom-bar-center">

@@ -1,30 +1,34 @@
 <script setup>
-import { computed } from 'vue'; 
-import ICON_REGISTRY from '@/assets/icons/icon-registry.json';
+import { computed } from 'vue'
+import ICON_REGISTRY from '@/assets/icons/icon-registry.json'
 
 const props = defineProps({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   size: {
     type: Number,
-    default: 24
-  }
-});
+    default: 24,
+  },
+})
 
 const iconPath = computed(() => {
-  return ICON_REGISTRY[props.name] || '<!-- Icon not found -->';
-});
+  return ICON_REGISTRY[props.name] || '<!-- Icon not found -->'
+})
 </script>
 
 <template>
-  <svg class="svg-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+  <svg
+    class="svg-icon"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :width="size" 
+    :width="size"
     :height="size"
-    >
-    <g v-html="iconPath"></g> <!-- V-HTML injects the raw path data for rendering -->
+  >
+    <g v-html="iconPath"></g>
+    <!-- V-HTML injects the raw path data for rendering -->
   </svg>
 </template>
 

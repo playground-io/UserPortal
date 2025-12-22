@@ -15,5 +15,5 @@
   "pulse": "<path d=\"M2 12h4l3 9l6-18l3 9h4\"/>",
   "pulse_anime1": "<circle cx=\"12\" cy=\"12\" r=\"0\" fill=\"currentColor\"> <animate attributeName=\"r\" calcMode=\"spline\" dur=\"1.2s\" keySplines=\".52,.6,.25,.99\" repeatCount=\"indefinite\" values=\"0;11\"/> <animate attributeName=\"opacity\" calcMode=\"spline\" dur=\"1.2s\" keySplines=\".52,.6,.25,.99\" repeatCount=\"indefinite\" values=\"1;0\"/> </circle>",
   "ai": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"m15 2l.539 2.392a5.39 5.39 0 0 0 4.07 4.07L22 9l-2.392.539a5.39 5.39 0 0 0-4.07 4.07L15 16l-.539-2.392a5.39 5.39 0 0 0-4.07-4.07L8 9l2.392-.539a5.39 5.39 0 0 0 4.07-4.07zM7 12l.385 1.708a3.85 3.85 0 0 0 2.907 2.907L12 17l-1.708.385a3.85 3.85 0 0 0-2.907 2.907L7 22l-.385-1.708a3.85 3.85 0 0 0-2.907-2.907L2 17l1.708-.385a3.85 3.85 0 0 0 2.907-2.907z\" color=\"currentColor\"/>",
-  "separator": "<path d=\"m3.75 15l7.72 7.72a.75.75 0 0 0 1.06 0L20.25 15M3.75 9l7.72-7.72a.75.75 0 0 1 1.06 0L20.25 9\"/>"
+  "separator": "<path d=\"M5.5 14.5q-.213 0-.356-.144Q5 14.212 5 14t.144-.356q.144-.143.356-.143h13q.213 0 .356.144q.144.144.144.357t-.144.356q-.143.143-.356.143h-13Zm0-4q-.213 0-.356-.144Q5 10.212 5 10t.144-.356Q5.288 9.5 5.5 9.5h13q.213 0 .356.144Q19 9.788 19 10t-.144.356q-.143.143-.356.143h-13Z\"/>"
 }

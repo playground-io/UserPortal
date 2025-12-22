@@ -1,6 +1,6 @@
 .light {
   --toolbar-bg-color: #414141;
-  
+
   --toolbar-btn-txt-color: rgba(255, 255, 255, 0.8);
   --toolbar-btn-hover: rgba(255, 255, 255, 0.3);
   --toolbar-btn-hover-txt-color: rgba(255, 255, 255, 1);
@@ -10,7 +10,7 @@
   --toolbar-btn-active-txt-color: rgba(255, 255, 255, 0.4);
 
   --bottom-bar-bg-color: #414141;
-  --bottom-bar-color: rgb(255, 255, 255); 
+  --bottom-bar-color: rgb(255, 255, 255);
 }
 
 .dark {
@@ -40,12 +40,12 @@
   --toolbar-btn-txt-tooltip: rgba(255, 255, 255, 0.8);
   --toolbar-btn-bg-tooltip: rgb(60, 60, 60);
 
-  --search-bg-color:#c7c7c7;
+  --search-bg-color: #c7c7c7;
   --search-placeholder-color: grey;
   --search-text-color: #2c2c2c;
 
   --splitter-bar-bg: rgb(224, 224, 224);
-  
+
   /* status bar */
   --status-bar-border: #e0e0e0;
   --status-bar-bg: #ffffff;
@@ -57,12 +57,9 @@
   --splitter-handle-bg: rgb(120, 120, 120);
   --splitter-handle-bg-hover: rgb(230, 230, 230);
 
-
-
-
   /*garbage*/
 
---color-primary: #10b981;
+  --color-primary: #10b981;
   --color-primary-hover: #34d399;
   --color-bg-app: #f3f4f6;
   --color-bg-main: #f8fafc;
@@ -70,6 +67,6 @@
   --color-border: #e5e7eb;
   --color-text-main: #1f2937;
   --color-text-muted: #6b7280;
-  
+
   --header-height: 64px;
 }

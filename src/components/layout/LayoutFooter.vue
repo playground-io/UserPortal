@@ -1,17 +1,15 @@
 <script setup>
-import { ref, defineAsyncComponent } from 'vue'
-import spinner from '@/components/core/LoadingSpinner.vue'
+import { defineAsyncComponent } from 'vue'
+import spinner from '@/components/core/LoadingBar.vue'
 import SlidingDrawer from '@/components/extensions/SlidingDrawer.vue'
-import StatusBar from '@/components/layout/StatusBar.vue'
-//import DrawerTable from '../views/DrawerTable.vue';
-import { useDrawerStore } from '@/stores/useDrawerStore'
+import StatusBar from '@/components/features/StatusBar.vue'
 
-const drawerStore = useDrawerStore()
+const props = defineProps(['isOpen', 'separatorHeight']);
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 const DrawerTable = defineAsyncComponent({
   loader: async () => {
     // 1. Wait for 2 seconds
-    await sleep(10000)
+    await sleep(1000)
     // 2. Then proceed with the import
     return import('@/components/views/DrawerTable.vue')
   },
@@ -24,7 +22,9 @@ const DrawerTable = defineAsyncComponent({
 
 <template>
   <footer class="footer-container">
-    <SlidingDrawer v-if="drawerStore.getLayout()">
+    <SlidingDrawer
+      :isOpen="props.isOpen"
+      :drawerHeight="props.separatorHeight">
       <DrawerTable />
     </SlidingDrawer>
     <StatusBar />
@@ -34,5 +34,8 @@ const DrawerTable = defineAsyncComponent({
 <style lang="scss" scoped>
 .footer-container {
   display: block;
+  position: relative;
 }
+
+
 </style>

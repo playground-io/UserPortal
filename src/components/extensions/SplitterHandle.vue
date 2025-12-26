@@ -3,6 +3,7 @@ import { ref, onUnmounted } from 'vue'
 import { useSplitterStore } from '@/stores/useSplitterStore'
 
 const splitterStore = useSplitterStore()
+const separatorHeight = defineModel('separatorHeight');
 
 // --- Snap Configuration ---
 const SNAP_OFFSET = 50 // Pixels distance to snap
@@ -16,7 +17,7 @@ const SNAP_POINTS = [
 const appElement = document.getElementById('app')
 if (appElement) {
   // Add the class to the root element's class list
-  console.log("Class 'my-new-class' added to #app.")
+  console.log("Class 'resizing' added to #app.")
 } else {
   console.error("Element with ID 'app' not found in the DOM.")
 }
@@ -29,7 +30,7 @@ const startHeight = ref(0)
 const startDrag = (e) => {
   isDragging.value = true
   startY.value = e.clientY
-  startHeight.value = splitterStore.bottomHeight
+  startHeight.value = separatorHeight.value //splitterStore.bottomHeight
   console.log(startY.value, isDragging.value, startHeight.value)
   // Add styling to body to prevent text selection
   appElement.classList.add('resizing')
@@ -79,11 +80,13 @@ const onDrag = (e) => {
   const finalHeight = Math.max(minHeight, Math.min(maxHeight, newHeight))
   // 3. Update Model
   //if (props.modelValue !== finalHeight) {
-  if (splitterStore.getBottomHeight !== finalHeight) {
+  //if (splitterStore.getBottomHeight !== finalHeight) {
+  if (separatorHeight.value !== finalHeight) {
     //emit('update:modelValue', finalHeight);
-    splitterStore.setBottomHeight(finalHeight)
+    //splitterStore.setBottomHeight(finalHeight)
+    separatorHeight.value = finalHeight;
   }
-  console.log('log', splitterStore.bottomHeight)
+  console.log('log', separatorHeight.value)
 }
 
 const stopDrag = () => {
@@ -106,15 +109,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="splitter" @mousedown="startDrag"></div>
+  <div @mousedown="startDrag"></div>
 </template>
 
-<style lang="scss" scoped>
-.splitter {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  //background-color: aqua;
-  z-index: 30;
-}
-</style>
+<style scoped></style>

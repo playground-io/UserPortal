@@ -4,7 +4,7 @@ import SvgToIcon from '@/components/core/SvgToIcon.vue'
 
 <template>
   <div class="loading">
-    <SvgToIcon name="spinner_anime2" size="30" />
+    <SvgToIcon name="spinner_anime2" :size="30" />
   </div>
 </template>
 

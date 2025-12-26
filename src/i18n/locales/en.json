@@ -1,7 +1,7 @@
 {
   "nav": {
     "button": {
-      "app": "Cloud Apps",
+      "apps": "Cloud Apps",
       "menu": "Services Admin",
       "console": "Portal Shell",
       "tasks": "Running Tasks",

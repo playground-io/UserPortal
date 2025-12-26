@@ -678,7 +678,7 @@ onUnmounted(() => {
                       class="clear-filter-button"
                       type="button"
                       @click.stop="
-                        clearFilter(header.value)
+                        clearFilter(header.value),
                         toggleFilter(header.value)
                       "
                       aria-label="Clear filter and close"

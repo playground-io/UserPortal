@@ -35,10 +35,6 @@ body,
   max-width: 100%;
 }
 
-#app.resizing {
-  user-select: none;
-}
-
 *,
 *::before,
 *::after {

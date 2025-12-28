@@ -9,7 +9,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 const DrawerTable = defineAsyncComponent({
   loader: async () => {
     // 1. Wait for 2 seconds
-    await sleep(1000)
+    await sleep(10000)
     // 2. Then proceed with the import
     return import('@/components/views/DrawerTable.vue')
   },

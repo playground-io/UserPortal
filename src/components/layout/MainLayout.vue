@@ -1,46 +1,52 @@
 <script setup>
-import { ref } from 'vue';
-import LayoutHeader from '@/components/layout/LayoutHeader.vue'
-import LayoutContent from '@/components/layout/LayoutContent.vue'
-import LayoutSeparator from '@/components/layout/LayoutSeparator.vue'
-import LayoutFooter from '@/components/layout/LayoutFooter.vue'
+import { useSidebar } from '@/composables/useSidebar'
+import TheSidebar from './TheSidebar.vue'
+import TheToolbar from './ToolBar.vue'
+import TheStatusBar from './StatusBar.vue'
 
-const isExtended = ref(false);
-const isOpened = ref(false);
-const separatorHeight = ref(0);
-const separatorTitle = ref('');
-
+const { isOpen, close } = useSidebar()
 </script>
 
 <template>
-  <div
-    class="global-container" 
-    :class="{ extended: isExtended }">
-    <LayoutHeader
-      v-model:isExtended="isExtended"
-      v-model:isOpened="isOpened"
-      v-model:separatorTitle="separatorTitle" />
-    <LayoutContent />
-    <LayoutSeparator
-      v-if="isExtended"
-      v-model:separatorHeight="separatorHeight"
-      v-model:separatorTitle="separatorTitle" />
-    <LayoutFooter
-      :isOpen="isOpened"
-      :separatorHeight="separatorHeight" />
+  <div class="app-shell">
+    <Teleport to="body">
+      <Transition name="fade">
+        <div v-if="isOpen" class="backdrop" @click="close"></div>
+      </Transition>
+      <TheSidebar />
+    </Teleport>
+
+    <TheToolbar />
+
+    <main class="content-area">
+      <slot /> </main>
+
+    <TheStatusBar />
   </div>
 </template>
 
-<style lang="scss" scoped>
-.global-container {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1fr;
-  overflow: hidden;
-  height: 100%;
-
-  &.extended {
-    grid-template-rows: auto 1fr auto auto;
-  }
+<style scoped>
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
 }
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f3f2f1; /* Light grey Azure content background */
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+/* Transition for Backdrop */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>

@@ -1,9 +1,9 @@
 <script setup>
-import MainLayout from '@/components/layout/MainLayout.vue'
+import AppWrapper from '@/components/layout/TheAppWrapper.vue';
 </script>
 
 <template>
-  <MainLayout />
+  <AppWrapper />
 </template>
 
 <style scoped></style>

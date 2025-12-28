@@ -1,6 +1,10 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
+import { useSidebar } from '@/composables/useSideBar'
 
+const { isExpanded, toggleSidebar } = useSidebar()
+
+import TheSidebar from '@/components/layout/TheSideBar.vue'
 const state = ref({
   count: 0,
 })
@@ -27,11 +31,32 @@ onUnmounted(() => {
 
 <template>
   <div>
+    <TheSidebar />
+    
+    <div v-if="isExpanded" class="overlay" @click="toggleSidebar"></div>
     <button @click="state.count++" :disabled="state.count >= 10">
       {{ state.count }}
     </button>
     <div>Current CPU Load: {{ cpuUsage }}%</div>
+    <button @click="isOpen=true">Open Sidebar</button>
+  </div>
+  <div class="layout-wrapper">
+    <div v-if="isOpen" class="backdrop" @click="close"></div>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 90; /* Just below the sidebar */
+}
+
+.app-body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+</style>

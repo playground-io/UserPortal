@@ -48,7 +48,7 @@ const splitterStore = useSplitterStore()
 .slide-enter-to, 
 .slide-leave-from {
   //transform: translateY(0);
-  height: v-bind('splitterStore.bottomHeight + "px"');
+  height: v-bind('props.drawerHeight + "px"');
   opacity: 1;
 }
 

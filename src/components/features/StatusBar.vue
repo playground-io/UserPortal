@@ -21,7 +21,9 @@ import SvgToIcon from '@/components/core/SvgToIcon.vue'
 .bottom-bar {
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+  align-items: center;
+  padding: 5px 20px;
+  font-size: 1.2rem;
   border-top: 1px solid var(--status-bar-border);
   background-color: var(--status-bar-bg);
   color: var(--status-bar-txt);

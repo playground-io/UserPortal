@@ -40,6 +40,6 @@ const iconPath = computed(() => {
   stroke-linejoin: round;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: 2;
 }
 </style>

@@ -30,7 +30,7 @@
     <div class="item-tooltip">
       {{ props.btnTooltip }}
     </div>
-    <SvgToIcon :name="props.iconName" :size="19" />
+    <SvgToIcon :name="props.iconName" :size="16" />
   </button>
 </template>
 

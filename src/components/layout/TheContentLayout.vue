@@ -1,10 +1,10 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
-import { useSidebar } from '@/composables/useSideBar'
+import { useOverlaySidebar } from '@/composables/useOverlaySidebar.js'
 
-const { isExpanded, toggleSidebar } = useSidebar()
+const { isExpanded, toggleSidebar } = useOverlaySidebar()
 
-import TheSidebar from '@/components/layout/TheSideBar.vue'
+import TheOverlaySidebar from '@/components/layout/TheOverlaySidebar.vue'
 const state = ref({
   count: 0,
 })
@@ -31,7 +31,8 @@ onUnmounted(() => {
 
 <template>
   <div>
-    <TheSidebar />
+    <TheTicketManager />
+    <TheOverlaySidebar />
     
     <div v-if="isExpanded" class="overlay" @click="toggleSidebar"></div>
     <button @click="state.count++" :disabled="state.count >= 10">

@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'; 
 import ToolBarButton from '@/components/core/ToolBarButton.vue'
+import { useOverlaySidebar } from '@/composables/useOverlaySidebar.js'
+const { sidebarOpen } = useOverlaySidebar()
 
 const isExtended = defineModel('isExtended');
 const isOpened = defineModel('isOpened');
@@ -53,7 +55,7 @@ const selectTab = (tab, title) => {
         :tooltip="$t('nav.button.apps')"
         iconName="apps"
         btnMode="normal"
-        @click="selectTab('apps', $t('nav.button.apps'))"
+        @click="sidebarOpen()"
         />
       <ToolBarButton
         btnLabel="menu"
@@ -61,12 +63,12 @@ const selectTab = (tab, title) => {
         :tooltip="$t('nav.button.menu')"
         iconName="menu"
         btnMode="normal"
-        @click="selectTab('menu', $t('nav.button.menu'))"
+        @click="sidebarOpen()"
         />
-      <TopBarBranding />
+<!--      <TopBarBranding />-->
     </div>
     <div class="toolbar-center">
-      <SearchBox />
+<!--      <SearchBox /> -->
       <ToolBarButton
         btnLabel="portal-shell"
         :btnPressed="btnToggled"
@@ -76,7 +78,6 @@ const selectTab = (tab, title) => {
         @click="handleNavigation('profile')"
         style="color: rgba(254, 186, 26)"
       />
-      <img src="@/assets/images/logo.png" alt="AI Badge" style="height: 30px" />
     </div>
     <div class="toolbar-right">
       <ToolBarButton
@@ -127,7 +128,7 @@ const selectTab = (tab, title) => {
         btnMode="tab"
         @click="selectTab('feedback', $t('nav.button.feedback'))"
         />
-      <UserAccount />
+<!--      <UserAccount /> -->
     </div>
     <div class="toolbar-shrunk">
       <ToolBarButton
@@ -138,7 +139,7 @@ const selectTab = (tab, title) => {
         btnMode="normal"
         @click="selectTab('normal', $t('nav.button.more'))"
         />
-      <UserAccount />
+<!--      <UserAccount /> -->
     </div>
   </nav>
 </template>

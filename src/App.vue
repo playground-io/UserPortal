@@ -1,9 +1,16 @@
 <script setup>
-import AppWrapper from '@/components/layout/TheAppWrapper.vue';
+import TheGlobalLayout from './components/layout/TheGlobalLayout.vue';
 </script>
 
 <template>
-  <AppWrapper />
+  <TheGlobalLayout />
 </template>
 
-<style scoped></style>
+<style>
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  max-width: 100%;
+}
+</style>

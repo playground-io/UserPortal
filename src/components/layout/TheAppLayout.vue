@@ -14,10 +14,11 @@ const separatorTitle = ref('');
 
 <template>
   <div class="app-container" >
-    <TheHeaderLayout fa:
+    <TheHeaderLayout
       v-model:isExtended="isExtended"
       v-model:isOpened="isOpened"
-      v-model:separatorTitle="separatorTitle" />
+      v-model:separatorTitle="separatorTitle"
+    />
 <!--    <TheContentLayout />
     <TheSeparatorLayout
       :isExtended="isExtended"

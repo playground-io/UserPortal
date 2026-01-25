@@ -1,9 +1,9 @@
 <script setup>
-import TheGlobalLayout from './components/layout/TheGlobalLayout.vue';
+import GlobalLayout from './components/layout/TheGlobalLayout.vue';
 </script>
 
 <template>
-  <TheGlobalLayout />
+  <GlobalLayout />
 </template>
 
 <style>

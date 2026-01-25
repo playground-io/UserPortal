@@ -1,10 +1,15 @@
 {
+  "backdrop": {
+    "overlay": {
+      "branding": "Services Administration Portal"
+    }
+  },
   "nav": {
     "button": {
-      "apps": "Cloud Apps",
-      "menu": "Services Admin",
+      "apps": "Apps Launcher",
+      "menu": "Services Menu",
       "console": "Portal Shell",
-      "tasks": "Running Tasks",
+      "tasks": "Tasks List",
       "notifications": "Notifications",
       "settings": "Settings",
       "support": "Support",
@@ -14,7 +19,7 @@
     "branding": {
       "title": "Home",
       "label": "SONAE MC",
-      "service": "Admin Portal"
+      "service": "Administration Portal"
     }
   },
   "footer": {

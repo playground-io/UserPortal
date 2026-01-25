@@ -1,11 +1,11 @@
 <script setup>
-import ToolBar from '@/components/features/ToolBar.vue'
+import Toolbar from '@/components/features/Toolbar.vue'
 
 </script>
 
 <template>
   <header class="header-container">
-    <ToolBar v-bind="$attrs"/>
+    <Toolbar v-bind="$attrs"/>
   </header>
 </template>
 

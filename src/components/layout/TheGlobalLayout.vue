@@ -1,11 +1,15 @@
 <script setup>
-  import TheOverlaySidebar from '@/components/layout/TheOverlaySidebar.vue';
-  import TheAppLayout from '@/components/layout/TheAppLayout.vue';
+  import BackdropOverlay from '@/components/core/BackdropOverlay.vue';
+  import AppLauncher from '@/components/layout/TheAppLauncher.vue';
+  import ServiceLauncher from '@/components/layout/TheServiceLauncher.vue';
+  import AppLayout from '@/components/layout/TheAppLayout.vue';
 </script>
 
 <template>
-  <TheOverlaySidebar />
-  <TheAppLayout />
+  <BackdropOverlay />
+  <AppLauncher />
+  <ServiceLauncher />
+  <AppLayout />
 </template>
 
 <style scoped>

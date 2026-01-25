@@ -1,6 +1,6 @@
 <script setup>
 import SvgToIcon from '@/components/core/SvgToIcon.vue'
-import { useToolBarButtonStore } from '@/stores/useToolBarButtonStore'
+import { useToolBarButtonStore } from '@/stores/useToolBarButtonStore_old'
 import { useDrawerStore } from '@/stores/useDrawerStore'
 import { inject } from 'vue';
 

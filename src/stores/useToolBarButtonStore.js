@@ -1,42 +1,57 @@
-// Store Global WebApp Layout
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from 'pinia';
+import { ref, computed } from 'vue';
 
-export const useToolBarButtonStore = defineStore('toolbar', () => {
-  // BUTTONS STATE
-  const activeButton = ref(null)
-  const activeTab = ref(null)
+export const useToolbarButtonStore = defineStore('toolbarButton', () => {
+  // --- STATE ---
+  const activeLauncher = ref(null);
+  const activeDrawer = ref(null); 
+  const activeSidebar = ref(null);
 
-  // ACTIONS
-  // 1. TOGGLE BUTTONS
-  const setButton = (button) => {
-    if (activeButton.value === button) {
-      activeButton.value = null // Unselect the button
-      return
-    }
+  // --- GETTERS ---
+  const isBackdropOpen = computed(() => activeLauncher.value !== null);
 
-    activeButton.value = button
+  // --- ACTIONS ---
+  function closeAll() {
+    activeLauncher.value = null;
   }
 
-  // 1. TOGGLE TABS
-  const setTab = (tab) => {
-    if (activeTab.value === tab) {
-      activeTab.value = null // Unselect the button
-      return
-    }
-
-    activeTab.value = tab
+  // Toggle Launcher Group buttons
+  function toggleLauncher(btnId) {
+    // Toggle the button logic within the group
+    activeLauncher.value = activeLauncher.value === btnId ? null : btnId;
   }
 
-  // GETTERS
-  const getPressed = (button) => {
-    return [activeButton.value, activeTab.value].includes(button)
+  // Toggle Drawer Group buttons
+  function toggleDrawer(btnId) {
+    // Close the Launcher/Backdrop if they are open
+    closeAll();
+    // Toggle the button logic within the group
+    activeDrawer.value = activeDrawer.value === btnId ? null : btnId;
   }
 
-  // RETURN
+  // Toggle Sidebar Group buttons
+  function toggleSidebar(btnId) {
+    // Close the Launcher/Backdrop if they are open
+    closeAll();
+    // Toggle the button logic within the group
+    activeSidebar.value = activeSidebar.value === btnId ? null : btnId;
+  }
+
+  function handleServiceClick(service) {
+    closeAll();
+    console.log('Pressed: ', service);
+    // You could also handle router navigation here
+  }
+  
   return {
-    setButton,
-    setTab,
-    getPressed,
-  }
-})
+    activeLauncher,
+    activeDrawer,
+    activeSidebar,
+    isBackdropOpen,
+    closeAll,
+    toggleLauncher,
+    toggleDrawer,
+    toggleSidebar,
+    handleServiceClick
+  };
+});

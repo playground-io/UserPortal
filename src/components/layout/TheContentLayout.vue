@@ -4,7 +4,7 @@ import { useOverlaySidebar } from '@/composables/useOverlaySidebar.js'
 
 const { isExpanded, toggleSidebar } = useOverlaySidebar()
 
-import TheOverlaySidebar from '@/components/layout/TheOverlaySidebar.vue'
+
 const state = ref({
   count: 0,
 })

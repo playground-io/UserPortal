@@ -1,0 +1,17 @@
+export const APPS_LAUNCHER = [
+  { id: 'cisco', label: 'Cisco', iconName: 'cisco', url: 'https://www.cisco.com/' },
+  { id: 'hp', label: 'HP', iconName: 'hp', url: 'https://www.hp.com/' },
+  { id: 'spotify', label: 'Spotify', iconName: 'spotify', url: 'https://open.spotify.com/' },
+  { id: 'nutanix', label: 'Nutanix', iconName: 'nutanix', url: 'https://www.nutanix.com/' },
+  { id: 'dell', label: 'Dell', iconName: 'dell', url: 'https://www.dell.com/' },
+  { id: 'huawei', label: 'Huawei', iconName: 'huawei', url: 'https://www.huawei.com/' },
+  { id: 'fortinet', label: 'Fortinet', iconName: 'fortinet', url: 'https://www.fortinet.com/' },
+  { id: 'paloalto', label: 'Palo Alto', iconName: 'paloalto', url: 'https://www.paloaltonetworks.com/' },
+  { id: 'azure', label: 'Azure', iconName: 'azure', url: 'https://azure.microsoft.com/' },
+  { id: 'aws', label: 'AWS', iconName: 'aws', url: 'https://aws.amazon.com/' },
+  { id: 'gcp', label: 'GCP', iconName: 'gcp', url: 'https://cloud.google.com/' },
+  { id: 'oci', label: 'OCI', iconName: 'oci', url: 'https://www.oracle.com/cloud/' },
+  { id: 'teams', label: 'Teams', iconName: 'teams', url: 'https://teams.microsoft.com/' },
+  { id: 'm365', label: 'M365', iconName: 'm365', url: 'https://www.office.com/' },
+  { id: 'bing', label: 'Bing', iconName: 'bing', url: 'https://www.bing.com/' },
+];

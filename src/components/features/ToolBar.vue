@@ -1,8 +1,22 @@
 <script setup>
-import { ref } from 'vue'; 
-import ToolBarButton from '@/components/core/ToolBarButton.vue'
-import { useOverlaySidebar } from '@/composables/useOverlaySidebar.js'
-const { sidebarOpen } = useOverlaySidebar()
+import { ref } from 'vue';
+
+import ToolbarButton from '@/components/features/Toolbar/ToolbarButton.vue'
+import ToolbarBranding from '@/components/features/Toolbar/ToolbarBranding.vue'
+import SearchBox from '@/components/features/Toolbar/SearchBox.vue'
+import UserAccount from '@/components/features/Toolbar/UserAccount.vue'
+
+import { storeToRefs } from 'pinia';
+import { useToolbarButtonStore } from '@/stores/useToolbarButtonStore';
+
+// Initialize the Store
+const toolbarButtonStore = useToolbarButtonStore();
+// Destructure refs to use them directly in the template
+const { activeLauncher, activeDrawer, activeSidebar } = storeToRefs(toolbarButtonStore);
+// Use actions directly from the store
+const { toggleLauncher, toggleDrawer, toggleSidebar } = toolbarButtonStore;
+
+
 
 const isExtended = defineModel('isExtended');
 const isOpened = defineModel('isOpened');
@@ -49,109 +63,111 @@ const selectTab = (tab, title) => {
 <template>
   <nav class="toolbar">
     <div class="toolbar-left">
-      <ToolBarButton
+      <ToolbarButton
         btnLabel="apps"
-        :btnPressed="tabSelected"
-        :tooltip="$t('nav.button.apps')"
+        :btnPressed="activeLauncher === 'btnA'"
+        :btnTooltip="$t('nav.button.apps')"
         iconName="apps"
-        btnMode="normal"
-        @click="sidebarOpen()"
-        />
-      <ToolBarButton
+        btnMode="toggle"
+        @click="toggleLauncher('btnA')"
+      />
+      <ToolbarButton
         btnLabel="menu"
-        :btnPressed="tabSelected"
-        :tooltip="$t('nav.button.menu')"
+        :btnPressed="activeLauncher === 'btnB'"
+        :btnTooltip="$t('nav.button.menu')"
         iconName="menu"
-        btnMode="normal"
-        @click="sidebarOpen()"
-        />
-<!--      <TopBarBranding />-->
+        btnMode="toggle"
+        @click="toggleLauncher('btnB')"
+      />
+      <ToolbarBranding />
     </div>
     <div class="toolbar-center">
-<!--      <SearchBox /> -->
-      <ToolBarButton
+      <SearchBox />
+      <ToolbarButton
         btnLabel="portal-shell"
-        :btnPressed="btnToggled"
-        :tooltip="$t('nav.button.console')"
+        :btnPressed="false"
+        :btnTooltip="$t('nav.button.console')"
         iconName="ai"
         btnMode="toggle"
-        @click="handleNavigation('profile')"
+        @click="handleServiceClick($t('nav.button.console'))"
         style="color: rgba(254, 186, 26)"
       />
     </div>
     <div class="toolbar-right">
-      <ToolBarButton
+      <ToolbarButton
         btnLabel="console"
-        :btnPressed="btnToggled"
-        :tooltip="$t('nav.button.console')"
+        :btnPressed="activeDrawer === 'btnA'"
+        :btnTooltip="$t('nav.button.console')"
         iconName="console"
         btnMode="toggle"
-        @click="toggleButton('console', $t('nav.button.console'))"
-        />
-      <ToolBarButton
+        @click="toggleDrawer('btnA')"
+      />
+      <ToolbarButton
         btnLabel="tasks"
-        :btnPressed="btnToggled"
-        :tooltip="$t('nav.button.tasks')"
+        :btnPressed="activeDrawer === 'btnB'"
+        :btnTooltip="$t('nav.button.tasks')"
         iconName="tasks"
         btnMode="toggle"
-        @click="toggleButton('tasks', $t('nav.button.tasks'))"
-        />
-      <ToolBarButton
+        @click="toggleDrawer('btnB')"
+      />
+      <ToolbarButton
         btnLabel="notifications"
-        :btnPressed="tabSelected"
-        :tooltip="$t('nav.button.notifications')"
+        :btnPressed="activeSidebar === 'btnA'"
+        :btnTooltip="$t('nav.button.notifications')"
         iconName="notifications"
         btnMode="tab"
-        @click="selectTab('notifications', $t('nav.button.notifications'))"
-        />
-      <ToolBarButton
+        @click="toggleSidebar('btnA')"
+      />
+      <ToolbarButton
         btnLabel="settings"
-        :btnPressed="tabSelected"
-        :tooltip="$t('nav.button.settings')"
+        :btnPressed="activeSidebar === 'btnB'"
+        :btnTooltip="$t('nav.button.settings')"
         iconName="settings"
         btnMode="tab"
-        @click="selectTab('settings', $t('nav.button.settings'))"
-        />
-      <ToolBarButton
+        @click="toggleSidebar('btnB')"
+      />
+      <ToolbarButton
         btnLabel="support"
-        :btnPressed="tabSelected"
-        :tooltip="$t('nav.button.support')"
+        :btnPressed="activeSidebar === 'btnC'"
+        :btnTooltip="$t('nav.button.support')"
         iconName="support"
         btnMode="tab"
-        @click="selectTab('support', $t('nav.button.support'))"
-        />
-      <ToolBarButton
+        @click="toggleSidebar('btnC')"
+      />
+      <ToolbarButton
         btnLabel="feedback"
-        :btnPressed="tabSelected"
-        :tooltip="$t('nav.button.feedback')"
+        :btnPressed="activeSidebar === 'btnD'"
+        :btnTooltip="$t('nav.button.feedback')"
         iconName="feedback"
         btnMode="tab"
-        @click="selectTab('feedback', $t('nav.button.feedback'))"
-        />
-<!--      <UserAccount /> -->
+        @click="toggleSidebar('btnD')"
+      />
+      <UserAccount />
     </div>
     <div class="toolbar-shrunk">
-      <ToolBarButton
+      <ToolbarButton
         btnLabel="more"
         :btnPressed="tabSelected"
-        :tooltip="$t('nav.button.more')"
+        :btnTooltip="$t('nav.button.more')"
         iconName="more"
         btnMode="normal"
         @click="selectTab('normal', $t('nav.button.more'))"
-        />
-<!--      <UserAccount /> -->
+      />
+      <UserAccount />
     </div>
   </nav>
 </template>
 
 <style lang="scss" scoped>
   .toolbar {
+    position: relative;
     display: flex;
     justify-content: space-between;
     height: var(--toolbar-height);
     color: var(--toolbar-color);
     background-color: var(--toolbar-bg);
-
+    z-index: 1010;
+  
     .toolbar-left,
     .toolbar-center,
     .toolbar-right {
@@ -160,12 +176,13 @@ const selectTab = (tab, title) => {
 
     .toolbar-left {
       justify-content: left;
-      min-width: 260px;
+      min-width: 60px; //260
       max-width: 350px;
     }
 
     .toolbar-center {
       justify-content: center;
+      flex: 1;
     }
 
     .toolbar-right {
